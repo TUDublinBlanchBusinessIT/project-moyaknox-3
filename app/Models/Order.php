@@ -10,4 +10,14 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = ['customer_id', 'bouquet_id', 'order_date', 'special_requests'];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function bouquet()
+    {
+        return $this->belongsTo(Bouquet::class);
+    }
 }
