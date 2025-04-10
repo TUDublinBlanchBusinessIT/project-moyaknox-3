@@ -1,0 +1,12 @@
+/* Override the default blue from .bg-primary on a dark navbar */
+.navbar.navbar-dark.bg-primary {
+    background-color: #F06292 !important; /* Pink */
+    color: #ffffff !important;           /* White text to show up on pink */
+  }
+  
+  .btn.btn-primary {
+    background-color: #F06292 !important; /* Pink background */
+    border-color: #F06292 !important;     /* Pink border */
+    color: #ffffff !important;           /* White text */
+  }
+  
