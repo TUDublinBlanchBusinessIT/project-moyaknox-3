@@ -44,12 +44,18 @@
                 {{ __('Log in') }}
             </x-primary-button>
 
-            
 
-            <p class="mt-3">
-                <a href="{{ route('register') }}" class="btn btn-sm" style="background-color: #ff69b4; color: white;">
-                Don't have an account? Register now </a>
-            </p>
+            <div class="mt-4 text-center">
+                <p class="mb-2">Don’t have an account?</p>
+                <a href="{{ route('register') }}" 
+                    class="btn w-100 py-2 fw-bold" 
+                    style="background-color: #212121; color: white; border-radius: 0.5rem; font-size: 0.9rem;">
+                    Register Now
+                </a>
+            </div>
+
+
+
 
         </div>
     </form>
