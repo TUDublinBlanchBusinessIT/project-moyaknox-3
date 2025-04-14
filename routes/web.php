@@ -6,16 +6,16 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FloristController;
 use App\Http\Controllers\BouquetController;
 use App\Http\Controllers\OrderController;
+use App\Models\Bouquet;
 
 // 1) Show the Breeze login page at "/"
 Route::get('/', function () {
     return view('auth.login');
 })->name('root');
 
-// 2) After login, show a simple home page
-Route::get('/home', function () {
-    return view('home');  // 'home.blade.php' with "Welcome to Floral Meath"
-})->middleware('auth')->name('home');
+// 2) After login, show home page with bouquet listings
+Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->name('home');
+
 
 // 3) Profile + resource routes, all behind auth
 Route::middleware('auth')->group(function () {

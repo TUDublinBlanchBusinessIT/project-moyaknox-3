@@ -68,4 +68,10 @@ class BouquetController extends Controller
         return redirect()->route('bouquets.index')
                          ->with('success', 'Bouquet deleted successfully.');
     }
+
+    public function showAll()
+    {
+        $bouquets = \App\Models\Bouquet::all();
+        return view('home', compact('bouquets'));
+    }
 }
