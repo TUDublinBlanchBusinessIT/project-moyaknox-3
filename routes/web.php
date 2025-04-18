@@ -16,29 +16,34 @@ Route::get('/', function () {
 // 2) After login, show home page with bouquet listings
 Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->name('home');
 
-// makes shop public
+// Makes shop public
 Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
 
-// bouquet detail page
+// Bouquet detail page
 Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
 
-// form submission page
-Route::middleware(['auth'])->group(function () {
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-});
+// Order routes
+Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
 
-// 3) Profile + resource routes, all behind auth
+// 3) Profile + resource routes, all behind auth + admin check
 Route::middleware(['auth', 'admin_gate'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Full Order CRUD
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
 
+    // Other resource routes
     Route::resource('customers', CustomerController::class);
     Route::resource('florists', FloristController::class);
     Route::resource('bouquets', BouquetController::class)->except(['show']);
-    Route::resource('orders', OrderController::class);
 });
 
-// 4) Breeze's built-in auth routes (login, register, etc.)
+
+// 4) Breeze's built-in auth routes
 require __DIR__.'/auth.php';

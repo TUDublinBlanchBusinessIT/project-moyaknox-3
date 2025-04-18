@@ -27,17 +27,42 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'customer_id'     => 'required|exists:customers,id',
-            'bouquet_id'      => 'required|exists:bouquets,id',
-            'order_date'      => 'required|date',
-            'special_requests'=> 'nullable',
+            'bouquet_id' => 'required|exists:bouquets,id',
+            'special_requests' => 'nullable|string',
         ]);
 
-        Order::create($validated);
+        $user = auth()->user();
 
-        return redirect()->route('orders.index')
-                         ->with('success', 'Order created successfully.');
+        // Check if the user already exists in the customers table
+
+        $customer = \App\Models\Customer::where('user_id', $user->id)
+        ->orWhere('email', $user->email)
+        ->first();
+
+        if (!$customer) {
+            // Create a new customer if not found
+            $customer = new \App\Models\Customer();
+            $customer->user_id = $user->id;
+            $customer->name = $user->name;
+            $customer->email = $user->email;
+            $customer->save();
+        }  elseif (!$customer->user_id) {
+            // Update existing customer with user_id
+            $customer->user_id = $user->id;
+            $customer->save();
+        }
+
+        $order = new \App\Models\Order();
+        $order->customer_id = $customer->id;
+        $order->bouquet_id = $validated['bouquet_id'];
+        $order->order_date = now();
+        $order->special_requests = $validated['special_requests'];
+        $order->save();
+
+        return redirect()->route('bouquets.shop')->with('success', 'Your order has been placed!');
     }
+
+     
 
     public function show(Order $order)
     {
