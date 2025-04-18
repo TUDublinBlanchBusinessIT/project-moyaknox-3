@@ -16,12 +16,16 @@ Route::get('/', function () {
 // 2) After login, show home page with bouquet listings
 Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->name('home');
 
+// makes shop public
+Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
+
 
 // 3) Profile + resource routes, all behind auth
 Route::middleware(['auth', 'admin_gate'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     Route::resource('customers', CustomerController::class);
     Route::resource('florists', FloristController::class);

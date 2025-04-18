@@ -74,4 +74,11 @@ class BouquetController extends Controller
         $bouquets = \App\Models\Bouquet::all();
         return view('home', compact('bouquets'));
     }
+
+    public function shop()
+    {
+        $bouquets = Bouquet::all();
+        return view('bouquets.shop', compact('bouquets'));
+    }
+
 }
