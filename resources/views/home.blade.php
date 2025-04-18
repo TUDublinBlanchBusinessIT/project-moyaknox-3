@@ -6,7 +6,7 @@
         <p class="text-muted">Explore our beautiful bouquet selection</p>
     </div>
 
-    <p>You are logged in as: {{ Auth::user()->email }}</p>
+
 
     <div class="container">
         <h1 class="text-2xl font-bold mb-6 text-center">Welcome to Floral Meath</h1>

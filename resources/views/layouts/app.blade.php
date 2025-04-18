@@ -60,11 +60,41 @@
         @yield('content')
     </main>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const toastEl = document.querySelector('.toast');
+            if (toastEl) {
+                const toast = new bootstrap.Toast(toastEl, {
+                    autohide: true,
+                    delay: 3000
+                });
+                toast.show();
+            }
+        });
+    </script>
+
+
+
     {{-- Optional sticky footer --}}
     <footer class="text-center py-3 mt-auto" style="background-color: #f8f9fa;">
         <small>&copy; {{ date('Y') }} Floral Meath. All rights reserved.</small>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    @if(session('success'))
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast align-items-center text-white bg-success border-0" role="alert" id="loginToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+@endif
+
 </body>
 </html>
