@@ -10,3 +10,7 @@
     color: #ffffff !important;           /* White text */
   }
   
+  .btn.btn-primary:hover {
+    background-color: #ec407a !important; /* Slightly darker pink */
+    border-color: #ec407a !important;
+} 
