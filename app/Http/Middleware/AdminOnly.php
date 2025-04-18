@@ -10,6 +10,7 @@ class AdminOnly
 {
     public function handle(Request $request, Closure $next)
     {
+
         $allowedEmails = [
             'moyaknox@gmail.com',
             'aislingknox@live.com',

@@ -5,7 +5,7 @@
     <h1>Bouquet Details</h1>
 
     <div class="card mb-4" style="max-width: 500px;">
-        <img src="{{ asset('images/bouquets/' . $bouquet->image) }}" class="card-img-top" alt="{{ $bouquet->name }}">
+    <img src="{{ asset('images/bouquets/' . $bouquet->image) }}" class="img-fluid rounded shadow-sm my-3" alt="{{ $bouquet->name }}" style="max-height: 300px;">
         <div class="card-body">
             <h5 class="card-title"><strong>{{ $bouquet->name }}</strong></h5>
             <p class="card-text"><strong>Price:</strong> €{{ $bouquet->price }}</p>

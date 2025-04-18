@@ -20,7 +20,7 @@ Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->
 Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
 
 // Bouquet detail page
-Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
+//Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
 
 // Order routes
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
@@ -45,5 +45,6 @@ Route::middleware(['auth', 'admin_gate'])->group(function () {
 });
 
 
+Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
 // 4) Breeze's built-in auth routes
 require __DIR__.'/auth.php';

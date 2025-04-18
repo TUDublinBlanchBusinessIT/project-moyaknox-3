@@ -28,7 +28,15 @@ class BouquetController extends Controller
             'price'      => 'required|numeric',
             'description'=> 'nullable',
             'florist_id' => 'nullable|exists:florists,id',
+            'image'      => 'required|image|mimes:jpg,jpeg,png|max:2048', // validation
         ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/bouquets'), $filename);
+            $validated['image'] = $filename;
+        }
 
         Bouquet::create($validated);
 

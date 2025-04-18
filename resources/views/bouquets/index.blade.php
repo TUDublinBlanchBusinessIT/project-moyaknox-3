@@ -17,7 +17,9 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Florist</th>
+                <th>Image</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -28,6 +30,10 @@
                 <td>{{ $bouquet->price }}</td>
                 <td>{{ $bouquet->description }}</td>
                 <td>{{ $bouquet->florist ? $bouquet->florist->name : 'N/A' }}</td>
+                <td>
+                    <img src="{{ asset('images/bouquets/' . $bouquet->image) }}" alt="{{ $bouquet->name }}" style="height: 70px;">
+                </td>
+
                 <td>
                     <a href="{{ route('bouquets.edit', $bouquet->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('bouquets.destroy', $bouquet->id) }}" method="POST" style="display:inline-block;">

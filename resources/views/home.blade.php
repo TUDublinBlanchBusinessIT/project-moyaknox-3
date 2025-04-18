@@ -18,16 +18,22 @@
 
 <div class="row text-center mb-5">
     <div class="col-md-4">
-        <img src="{{ asset('images/bouquets/sunshinedelight.jpg') }}" class="img-fluid bouquet-img mb-2" alt="Summer Bouquet 1">
+    <a href="{{ route('bouquets.show', ['bouquet' => 4]) }}">
+        <img src="{{ asset('images/bouquets/sunshinedelight.jpg') }}" class="img-fluid rounded shadow-sm mb-2 bouquet-img" alt="Sunshine Delight">
         <p><strong>Sunshine Delight</strong></p>
+    </a>
     </div>
     <div class="col-md-4">
-        <img src="{{ asset('images/bouquets/peachperfect.jpg') }}" class="img-fluid bouquet-img mb-2" alt="Summer Bouquet 2">
+    <a href="{{ route('bouquets.show', ['bouquet' => 6]) }}">
+        <img src="{{ asset('images/bouquets/peachperfect.jpg') }}" class="img-fluid rounded shadow-sm mb-2 bouquet-img" alt="Peach Perfect">
         <p><strong>Peach Perfect</strong></p>
+    </a>
     </div>
     <div class="col-md-4">
-        <img src="{{ asset('images/bouquets/goldenhour.jpg') }}" class="img-fluid bouquet-img mb-2" alt="Summer Bouquet 3">
+    <a href="{{ route('bouquets.show', ['bouquet' => 5]) }}">
+        <img src="{{ asset('images/bouquets/goldenhour.jpg') }}" class="img-fluid rounded shadow-sm mb-2 bouquet-img" alt="Golden Hour Glow">
         <p><strong>Golden Hour Glow</strong></p>
+    </a>
     </div>
 </div>
 
@@ -41,16 +47,25 @@
 
 <div class="d-flex justify-content-around flex-wrap">
     <div class="text-center m-3">
-        <img src="{{ asset('images/bouquets/blossom.jpg') }}" class="bouquet-img" style="height: 200px;">
+    <a href="{{ route('bouquets.show', ['bouquet' => 2]) }}">
+        <img src="{{ asset('images/bouquets/blossom.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
         <strong class="d-block mt-2">Blush Bestseller</strong>
+    </a>
+
     </div>
     <div class="text-center m-3">
-        <img src="{{ asset('images/bouquets/spring.jpg') }}" class="bouquet-img" style="height: 200px;">
+    <a href="{{ route('bouquets.show', ['bouquet' => 1]) }}">
+        <img src="{{ asset('images/bouquets/spring.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
         <strong class="d-block mt-2">Spring Surprise</strong>
+    </a>
+
     </div>
     <div class="text-center m-3">
-        <img src="{{ asset('images/bouquets/valentine.jpg') }}" class="bouquet-img" style="height: 200px;">
+    <a href="{{ route('bouquets.show', ['bouquet' => 3]) }}">
+        <img src="{{ asset('images/bouquets/valentine.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
         <strong class="d-block mt-2">Love in the Air</strong>
+    </a>
+
     </div>
 </div>
 @endsection
