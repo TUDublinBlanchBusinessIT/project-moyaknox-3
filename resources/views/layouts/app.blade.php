@@ -7,6 +7,8 @@
     <!-- Bootstrap or Bootswatch link -->
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cosmo/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+
 </head>
 <body class="d-flex flex-column min-vh-100"> {{-- Make body full height & flex column --}}
 
