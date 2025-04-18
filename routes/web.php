@@ -19,6 +19,13 @@ Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->
 // makes shop public
 Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
 
+// bouquet detail page
+Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
+
+// form submission page
+Route::middleware(['auth'])->group(function () {
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+});
 
 // 3) Profile + resource routes, all behind auth
 Route::middleware(['auth', 'admin_gate'])->group(function () {
@@ -29,7 +36,7 @@ Route::middleware(['auth', 'admin_gate'])->group(function () {
 
     Route::resource('customers', CustomerController::class);
     Route::resource('florists', FloristController::class);
-    Route::resource('bouquets', BouquetController::class);
+    Route::resource('bouquets', BouquetController::class)->except(['show']);
     Route::resource('orders', OrderController::class);
 });
 
