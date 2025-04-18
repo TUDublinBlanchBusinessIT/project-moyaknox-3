@@ -24,7 +24,6 @@ Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bou
 
 // Order routes
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
-Route::get('/orders', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
 
 // 3) Profile + resource routes, all behind auth + admin check
 Route::middleware(['auth', 'admin_gate'])->group(function () {
@@ -33,6 +32,7 @@ Route::middleware(['auth', 'admin_gate'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Full Order CRUD
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
