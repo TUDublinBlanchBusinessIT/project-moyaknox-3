@@ -22,6 +22,16 @@
             <input type="hidden" name="order_date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
 
             <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" name="phone" id="phone" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea name="address" id="address" class="form-control" rows="2" required></textarea>
+            </div>
+
+            <div class="mb-3">
                 <label for="special_requests" class="form-label">Special Requests</label>
                 <textarea name="special_requests" id="special_requests" class="form-control" rows="3"></textarea>
             </div>
@@ -31,9 +41,3 @@
     @else
         <p><a href="{{ route('login') }}">Log in</a> to place an order.</p>
     @endauth
-
-    <br>
-    <a href="{{ route('bouquets.shop') }}" class="btn btn-dark mt-3">Back to Bouquets</a>
-</div>
-@endsection
-
