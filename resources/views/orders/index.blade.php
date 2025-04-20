@@ -17,6 +17,7 @@
                 <th>Bouquet</th>
                 <th>Order Date</th>
                 <th>Special Requests</th>
+                <th>Delivery Method</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -28,6 +29,8 @@
                 <td>{{ $order->bouquet ? $order->bouquet->name : 'N/A' }}</td>
                 <td>{{ $order->order_date }}</td>
                 <td>{{ $order->special_requests }}</td>
+                <td>{{ $order->delivery_method }}</td>
+
                 <td>
                     <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline-block;">
