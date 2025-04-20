@@ -31,6 +31,7 @@ class OrderController extends Controller
             'special_requests' => 'nullable|string',
             'phone' => 'required|string',
             'address' => 'required|string',
+            'delivery_method' => 'required|in:delivery,pickup',
         ]);
     
         $user = auth()->user();
@@ -55,6 +56,7 @@ class OrderController extends Controller
         $order->bouquet_id = $validated['bouquet_id'];
         $order->order_date = now();
         $order->special_requests = $validated['special_requests'];
+        $order->delivery_method = $validated['delivery_method'];
         $order->save();
     
         return redirect()->route('bouquets.shop')->with('success', 'Your order has been placed!');
@@ -84,6 +86,7 @@ class OrderController extends Controller
             'bouquet_id'      => 'required|exists:bouquets,id',
             'order_date'      => 'required|date',
             'special_requests'=> 'nullable',
+            'delivery_method' => 'required|in:delivery,pickup',
         ]);
 
         $order->update($validated);
