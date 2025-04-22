@@ -32,6 +32,8 @@ class OrderController extends Controller
             'phone' => 'required|string',
             'delivery_method' => 'required|in:delivery,pickup',
             'address' => 'required_if:delivery_method,delivery|nullable|string',
+            'pickup_date' => 'nullable|date',
+            'pickup_time' => 'nullable',
         ]);
     
         $user = auth()->user();
@@ -57,7 +59,21 @@ class OrderController extends Controller
         $order->order_date = now();
         $order->special_requests = $validated['special_requests'];
         $order->delivery_method = $validated['delivery_method'];
+        $order->pickup_date = $request->input('pickup_date');
+        $order->pickup_time = $request->input('pickup_time');
+        
+        if ($request->input('delivery_method') === 'pickup') {
+            $order->pickup_date = $request->input('pickup_date');
+            $order->pickup_time = $request->input('pickup_time');
+        }
+        
         $order->save();
+
+        if ($request->input('delivery_method') === 'pickup') {
+            $order->pickup_date = $request->input('pickup_date');
+            $order->pickup_time = $request->input('pickup_time');
+        }
+        
     
         return redirect()->route('bouquets.shop')->with('success', 'Your order has been placed!');
     }

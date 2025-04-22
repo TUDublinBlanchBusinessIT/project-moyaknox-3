@@ -18,9 +18,12 @@
                 <th>Order Date</th>
                 <th>Special Requests</th>
                 <th>Delivery Method</th>
+                <th>Pickup Date</th>
+                <th>Pickup Time</th>
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach($orders as $order)
             <tr>
@@ -30,7 +33,8 @@
                 <td>{{ $order->order_date }}</td>
                 <td>{{ $order->special_requests }}</td>
                 <td>{{ $order->delivery_method }}</td>
-
+                <td>{{ $order->pickup_date ?? '—' }}</td>
+                <td>{{ $order->pickup_time ?? '—' }}</td>
                 <td>
                     <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline-block;">

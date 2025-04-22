@@ -32,12 +32,25 @@
         </select>
     </div>
 
+
         <!--  Address wrapper so we can hide it -->
     <div class="mb-3" id="addressField">
         <label for="address" class="form-label">Address</label>
         <textarea name="address" id="address" class="form-control" rows="2"></textarea>
     </div>
  
+
+        <!-- Pickup Date and Time -->
+    <div id="pickupDetails" style="display: none;">
+        <div class="mb-3">
+            <label for="pickup_date" class="form-label">Select Collection Date</label>
+            <input type="date" name="pickup_date" id="pickup_date" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="pickup_time" class="form-label">Select Collection Time</label>
+            <input type="time" name="pickup_time" id="pickup_time" class="form-control">
+        </div>
+    </div>
 
 
             <div class="mb-3">
@@ -57,20 +70,24 @@
 </div>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const deliverySelect = document.getElementById('delivery_method');
-            const addressField = document.getElementById('addressField');
+    document.addEventListener('DOMContentLoaded', function () {
+        const deliverySelect = document.getElementById('delivery_method');
+        const addressField = document.getElementById('addressField');
+        const pickupDetails = document.getElementById('pickupDetails');
 
-            function toggleAddressField() {
-                if (deliverySelect.value === 'pickup') {
-                    addressField.style.display = 'none';
-                } else {
-                    addressField.style.display = 'block';
-                }
+        function toggleFields() {
+            if (deliverySelect.value === 'pickup') {
+                addressField.style.display = 'none';
+                pickupDetails.style.display = 'block';
+            } else {
+                addressField.style.display = 'block';
+                pickupDetails.style.display = 'none';
             }
+        }
 
-            deliverySelect.addEventListener('change', toggleAddressField);
-            toggleAddressField(); // Run once on page load
-        });
-    </script>
+        deliverySelect.addEventListener('change', toggleFields);
+        toggleFields(); // Run once on page load
+    });
+</script>
+
 @endsection
