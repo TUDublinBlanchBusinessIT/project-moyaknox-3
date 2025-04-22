@@ -24,18 +24,20 @@
                 <input type="text" name="phone" id="phone" class="form-control" required>
             </div>
 
-            <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <textarea name="address" id="address" class="form-control" rows="2" required></textarea>
-            </div>
+    <div class="mb-3">
+        <label for="delivery_method" class="form-label">Delivery Method</label>
+        <select name="delivery_method" id="delivery_method" class="form-control" required>
+            <option value="delivery">Delivery</option>
+            <option value="pickup">Pickup In-Store</option>
+        </select>
+    </div>
 
-            <div class="mb-3">
-                <label for="delivery_method" class="form-label">Delivery Method</label>
-                <select name="delivery_method" id="delivery_method" class="form-control" required>
-                    <option value="delivery">Delivery</option>
-                    <option value="pickup">Pickup In-Store</option>
-                </select>
-            </div>
+        <!--  Address wrapper so we can hide it -->
+    <div class="mb-3" id="addressField">
+        <label for="address" class="form-label">Address</label>
+        <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+    </div>
+ 
 
 
             <div class="mb-3">
@@ -47,8 +49,28 @@
         </form>
     @else
         <p><a href="{{ route('login') }}">Log in</a> to place an order.</p>
+    
+
     @endauth
 
     <a href="{{ route('bouquets.shop') }}" class="btn btn-dark mt-3">Back to Bouquets</a>
 </div>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deliverySelect = document.getElementById('delivery_method');
+            const addressField = document.getElementById('addressField');
+
+            function toggleAddressField() {
+                if (deliverySelect.value === 'pickup') {
+                    addressField.style.display = 'none';
+                } else {
+                    addressField.style.display = 'block';
+                }
+            }
+
+            deliverySelect.addEventListener('change', toggleAddressField);
+            toggleAddressField(); // Run once on page load
+        });
+    </script>
 @endsection

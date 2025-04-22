@@ -30,8 +30,8 @@ class OrderController extends Controller
             'bouquet_id' => 'required|exists:bouquets,id',
             'special_requests' => 'nullable|string',
             'phone' => 'required|string',
-            'address' => 'required|string',
             'delivery_method' => 'required|in:delivery,pickup',
+            'address' => 'required_if:delivery_method,delivery|nullable|string',
         ]);
     
         $user = auth()->user();
