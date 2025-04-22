@@ -85,7 +85,7 @@ class OrderController extends Controller
             'customer_id'     => 'required|exists:customers,id',
             'bouquet_id'      => 'required|exists:bouquets,id',
             'order_date'      => 'required|date',
-            'special_requests'=> 'nullable',
+            'special_requests'=> 'nullable|string',
             'delivery_method' => 'required|in:delivery,pickup',
         ]);
 

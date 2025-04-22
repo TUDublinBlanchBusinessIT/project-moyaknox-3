@@ -36,6 +36,16 @@
             <label for="special_requests" class="form-label">Special Requests:</label>
             <textarea name="special_requests" id="special_requests" class="form-control">{{ $order->special_requests }}</textarea>
         </div>
+
+        <div class="mb-3">
+            <label for="delivery_method" class="form-label">Delivery Method</label>
+            <select name="delivery_method" id="delivery_method" class="form-control" required>
+                <option value="delivery" {{ $order->delivery_method === 'delivery' ? 'selected' : '' }}>Delivery</option>
+                <option value="pickup" {{ $order->delivery_method === 'pickup' ? 'selected' : '' }}>Pickup In-Store</option>
+            </select>
+        </div>
+
+
         <button type="submit" class="btn btn-primary">Update Order</button>
     </form>
 </div>
