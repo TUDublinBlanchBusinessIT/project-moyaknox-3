@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Floral Meath</a>
+    @auth
+        <a class="navbar-brand" href="{{ route('home') }}">Floral Meath</a>
+    @else
+        <a class="navbar-brand" href="{{ route('login') }}">Floral Meath</a>
+    @endauth
+
+       
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,10 +15,14 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <!-- Left: CRUD links -->
             <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('customers.index') }}">Customers</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('florists.index') }}">Florists</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('bouquets.index') }}">Bouquets</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('orders.index') }}">Orders</a></li>
+                
             </ul>
             
             <!-- Right: Auth links -->

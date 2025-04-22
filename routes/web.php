@@ -14,7 +14,7 @@ Route::get('/', function () {
 })->name('root');
 
 // 2) After login, show home page with bouquet listings
-Route::get('/home', [BouquetController::class, 'showAll'])->middleware('auth')->name('home');
+Route::get('/home', [BouquetController::class, 'showAll'])->name('home');
 
 // Makes shop public
 Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
