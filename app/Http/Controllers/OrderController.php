@@ -75,7 +75,13 @@ class OrderController extends Controller
         }
         
     
-        return redirect()->route('bouquets.shop')->with('success', 'Your order has been placed!');
+        return redirect()->route('bouquets.shop')->with([
+            'order_success' => true,
+            'customer_name' => $customer->name,
+            'delivery_method' => $order->delivery_method,
+            'pickup_date' => $order->pickup_date,
+            'pickup_time' => $order->pickup_time
+        ]);
     }
     
 
