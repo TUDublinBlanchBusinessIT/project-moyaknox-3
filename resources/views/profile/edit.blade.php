@@ -3,53 +3,71 @@
 @section('content')
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+
+        {{-- Profile Info --}}
+        <div class="p-4 bg-white border rounded shadow-sm">
             <div class="max-w-xl">
                 @include('profile.partials.update-profile-information-form')
             </div>
         </div>
 
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+        {{-- Password --}}
+        <div class="p-4 bg-white border rounded shadow-sm">
             <div class="max-w-xl">
                 @include('profile.partials.update-password-form')
             </div>
         </div>
 
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+        {{-- Delete Account --}}
+        <div class="p-4 bg-white border rounded shadow-sm">
             <div class="max-w-xl">
                 @include('profile.partials.delete-user-form')
             </div>
         </div>
 
-        {{-- ✅ Past Orders --}}
-        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-            <h3 class="text-center mb-4 text-danger">Your Past Orders</h3>
+        {{-- Past Orders --}}
+        <div class="p-4 bg-white border rounded shadow-sm">
+            <h3 class="text-center mb-4" style="color: #ff69b4; font-weight: bold;">Your Past Orders</h3>
 
             @if($orders->count())
-                <table class="table table-bordered text-center">
-                    <thead>
-                        <tr>
-                            <th>Bouquet</th>
-                            <th>Order Date</th>
-                            <th>Delivery Method</th>
-                            <th>Pickup Date</th>
-                            <th>Pickup Time</th>
-                            <th>Special Requests</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($orders as $order)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover text-center align-middle shadow-sm rounded">
+                        <thead class="table-warning">
                             <tr>
-                                <td>{{ $order->bouquet->name ?? 'N/A' }}</td>
-                                <td>{{ \Carbon\Carbon::parse($order->order_date)->format('d M Y') }}</td>
-                                <td>{{ ucfirst($order->delivery_method) }}</td>
-                                <td>{{ $order->pickup_date ? \Carbon\Carbon::parse($order->pickup_date)->format('d M Y') : '—' }}</td>
-                                <td>{{ $order->pickup_time ? \Carbon\Carbon::parse($order->pickup_time)->format('H:i') : '—' }}</td>
-                                <td>{{ $order->special_requests ?? '—' }}</td>
+                                <th>Bouquet</th>
+                                <th>Order Date</th>
+                                <th>Delivery Method</th>
+                                <th>Pickup Date</th>
+                                <th>Pickup Time</th>
+                                <th>Special Requests</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $order)
+                                <tr>
+                                    <td>{{ $order->bouquet->name ?? 'N/A' }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($order->order_date)->format('d M Y') }}</td>
+                                    <td>{{ ucfirst($order->delivery_method) }}</td>
+                                    <td>
+                                        @if($order->delivery_method === 'pickup' && $order->pickup_date)
+                                            {{ \Carbon\Carbon::parse($order->pickup_date)->format('d M Y') }}
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($order->delivery_method === 'pickup' && $order->pickup_time)
+                                            {{ \Carbon\Carbon::parse($order->pickup_time)->format('H:i') }}
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                    <td>{{ $order->special_requests ?? '—' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @else
                 <p class="text-muted text-center">You have no past orders yet.</p>
             @endif
