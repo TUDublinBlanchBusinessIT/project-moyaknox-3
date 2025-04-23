@@ -26,11 +26,14 @@ Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
 
 // 3) Profile + resource routes, all behind auth + admin check
-Route::middleware(['auth', 'admin_gate'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+});
 
+Route::middleware(['auth', 'admin_gate'])->group(function () {
     // Full Order CRUD
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');

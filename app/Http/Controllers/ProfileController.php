@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -16,9 +17,14 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = $request->user();
+        $orders = $user->orders()->with(['bouquet'])->latest()->get();
+        
+        return view('profile.edit', compact('user', 'orders'));
+        
+        //return view('profile.edit', [
+          //  'user' => $request->user(),
+        //]);
     }
 
     /**
