@@ -9,7 +9,7 @@
 <div class="text-center p-4 mb-4" style="background-color: #fff2f4; border-radius: 12px;">
     <h5 class="mb-2">📍 Visit Our Florist Shop</h5>
     <p class="mb-1">
-        Find us at <strong>13 Main Street, Navan, Co. Meath</strong> – Eircode: <strong>C15 XY27</strong>
+        Find us at <strong>13 Watergate Street, Navan, Co. Meath</strong> – Eircode: <strong>C15 XY27</strong>
     </p>
     <a href="https://www.google.com/maps/search/?api=1&query=13+Watergate+Street,+Navan,+Co+Meath,+C15+XY27" target="_blank" class="btn btn-outline-dark mt-2">
         View on Google Maps

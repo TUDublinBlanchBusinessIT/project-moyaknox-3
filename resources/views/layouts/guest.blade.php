@@ -17,10 +17,10 @@
 <body class="font-sans text-gray-900 antialiased">
 
     <!-- Centered wrapper for content -->
-    <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-gray-100">
+    <div class="min-h-screen flex flex-col items-center pt-12 sm:pt-0 bg-gray-100">
 
         <!-- Logo -->
-        <div class="flex justify-center mt-10 mb-6">
+        <div class="flex justify-center mt-16 mb-6">
            <img src="{{ asset('images/floralmeath-logo.png') }}"
                 alt="Floral Meath Logo"
                 style="max-height: 150px;"
