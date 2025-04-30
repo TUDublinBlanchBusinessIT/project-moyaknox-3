@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE htm>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,14 +33,17 @@
                 </ul>
 
                 
-
-                <form action="{{ route('bouquets.search') }}" method="GET" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" name="query" placeholder="Search bouquets..." aria-label="Search">
-                    <button class="btn btn-light" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-
+                <div class="position-relative d-flex align-items-center" style="width: 320px;">
+                    <form action="{{ route('bouquets.search') }}" method="GET" class="d-flex w-100" role="search">
+                        <input class="form-control me-2" id="searchInput" type="search" name="query" placeholder="Search bouquets..." autocomplete="off">
+                        <button class="btn btn-light" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                    <div class="autocomplete-results position-absolute w-100 mt-1" style="top: 100%; z-index: 2000;"></div>
+                </div>
+    
+            </div>
 
                 <ul class="navbar-nav ms-auto">
                     @auth
@@ -109,6 +112,55 @@
         </div>
     </div>
 @endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('input[name="query"]');
+    const resultsBox = document.querySelector('.autocomplete-results');
+
+    if (searchInput && resultsBox) {
+        searchInput.addEventListener('input', async () => {
+            const query = searchInput.value.trim();
+
+            if (query.length < 1) {
+                resultsBox.innerHTML = '';
+                return;
+            }
+
+            try {
+                const res = await fetch(`/search-suggestions?query=${query}`);
+                const suggestions = await res.json();
+
+                resultsBox.innerHTML = '';
+
+                suggestions.forEach(name => {
+                    const item = document.createElement('div');
+                    item.classList.add('autocomplete-suggestion');
+                    item.textContent = name;
+                    item.style.cursor = 'pointer';
+
+                    item.addEventListener('click', () => {
+                        searchInput.value = name;
+                        resultsBox.innerHTML = '';
+                    });
+
+                    resultsBox.appendChild(item);
+                });
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !resultsBox.contains(e.target)) {
+                resultsBox.innerHTML = '';
+            }
+        });
+    }
+});
+
+</script>
+
 
 </body>
 </html>

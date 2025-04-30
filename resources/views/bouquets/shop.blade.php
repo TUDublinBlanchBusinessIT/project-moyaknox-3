@@ -6,8 +6,12 @@
 
     <div class="row">
         @if($bouquets->isEmpty())
-            <p class="text-center text-muted mt-4">No bouquets match your search.</p>
+            <div class="alert text-center mt-5 p-4" style="background-color: #ffe6ee; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <h5 class="mb-2" style="color: #d63384;">🌸 Oops! No bouquets found.</h5>
+                <p class="text-muted mb-0">Try searching for a different name or browse our full selection in the <a href="{{ route('bouquets.shop') }}" class="text-decoration-underline" style="color: #ff69b4;">shop</a>.</p>
+            </div>
         @endif
+
 
 
         @foreach ($bouquets as $bouquet)

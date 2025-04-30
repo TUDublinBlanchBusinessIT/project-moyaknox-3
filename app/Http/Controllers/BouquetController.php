@@ -97,9 +97,20 @@ class BouquetController extends Controller
                             ->orWhere('description', 'like', '%' . $query . '%')
                             ->get();
 
-        return view('bouquets.shop', compact('bouquets'));
+        return view('bouquets.search-results', compact('bouquets'));
     }
 
+    public function suggestions(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $suggestions = Bouquet::where('name', 'like', '%' . $query . '%')
+            ->pluck('name');
+    
+        return response()->json($suggestions);
+    }
+    
+    
 
 
 }
