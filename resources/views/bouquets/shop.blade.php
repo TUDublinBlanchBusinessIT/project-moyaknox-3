@@ -5,6 +5,11 @@
     <h1 class="mb-4">Shop Bouquets</h1>
 
     <div class="row">
+        @if($bouquets->isEmpty())
+            <p class="text-center text-muted mt-4">No bouquets match your search.</p>
+        @endif
+
+
         @foreach ($bouquets as $bouquet)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">

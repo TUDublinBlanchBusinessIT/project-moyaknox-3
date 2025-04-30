@@ -19,6 +19,13 @@ Route::get('/home', [BouquetController::class, 'showAll'])->name('home');
 // Makes shop public
 Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
 
+// Makes shop public
+Route::get('/shop', [BouquetController::class, 'shop'])->name('bouquets.shop');
+
+// 🌸 Search bar route (available to all users)
+Route::get('/search', [BouquetController::class, 'search'])->name('bouquets.search');
+
+
 // Bouquet detail page
 //Route::get('/bouquets/{bouquet}', [BouquetController::class, 'show'])->name('bouquets.show');
 

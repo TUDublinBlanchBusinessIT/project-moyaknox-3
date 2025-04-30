@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cosmo/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 
 </head>
 <body class="d-flex flex-column min-vh-100"> {{-- Make body full height & flex column --}}
@@ -29,6 +31,16 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('orders.index') }}">Orders</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bouquets.shop') }}">Shop</a></li>
                 </ul>
+
+                
+
+                <form action="{{ route('bouquets.search') }}" method="GET" class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search bouquets..." aria-label="Search">
+                    <button class="btn btn-light" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+
 
                 <ul class="navbar-nav ms-auto">
                     @auth

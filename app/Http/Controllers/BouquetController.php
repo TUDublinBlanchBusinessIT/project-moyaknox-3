@@ -89,4 +89,17 @@ class BouquetController extends Controller
         return view('bouquets.shop', compact('bouquets'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $bouquets = Bouquet::where('name', 'like', '%' . $query . '%')
+                            ->orWhere('description', 'like', '%' . $query . '%')
+                            ->get();
+
+        return view('bouquets.shop', compact('bouquets'));
+    }
+
+
+
 }
