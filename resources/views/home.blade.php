@@ -60,21 +60,21 @@
     <div class="text-center m-3">
     <a href="{{ route('bouquets.show', ['bouquet' => 2]) }}">
         <img src="{{ asset('images/bouquets/blossom.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
-        <strong class="d-block mt-2">Blush Bestseller</strong>
+        <strong class="d-block mt-2">Elegant Bouquet</strong>
     </a>
 
     </div>
     <div class="text-center m-3">
     <a href="{{ route('bouquets.show', ['bouquet' => 1]) }}">
         <img src="{{ asset('images/bouquets/spring.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
-        <strong class="d-block mt-2">Spring Surprise</strong>
+        <strong class="d-block mt-2">Spring Bouquet</strong>
     </a>
 
     </div>
     <div class="text-center m-3">
     <a href="{{ route('bouquets.show', ['bouquet' => 3]) }}">
         <img src="{{ asset('images/bouquets/valentine.jpg') }}" style="height: 200px;" class="rounded bouquet-img">
-        <strong class="d-block mt-2">Love in the Air</strong>
+        <strong class="d-block mt-2">Valentine</strong>
     </a>
 
     </div>
