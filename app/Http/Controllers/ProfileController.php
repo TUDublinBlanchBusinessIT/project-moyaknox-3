@@ -40,6 +40,12 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        if ($request->user()->customer) {
+            $customer = $request->user()->customer;
+            $customer->name = $request->user()->name; // update name to match
+            $customer->save();
+        }
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
