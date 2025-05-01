@@ -10,7 +10,7 @@ class BouquetController extends Controller
 {
     public function index()
     {
-        $bouquets = Bouquet::all();
+        $bouquets = Bouquet::with('florist')->get();
         return view('bouquets.index', compact('bouquets'));
     }
 
